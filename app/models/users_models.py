@@ -49,7 +49,7 @@ class User(Base):
         user = session.query(User).filter(User.username == name).filter(User.id).first()
         return user.id
     
-    def checkProfileUser(id):
+    def check_profile_User(id):
         # Bruno - 07/01 - Tive que fazer um join para pegar o catProf
         user = (session.query(Profile).join(User, Profile.user_id == User.id).filter(User.id == id).first())
         if user:

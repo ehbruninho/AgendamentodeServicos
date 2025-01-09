@@ -29,24 +29,12 @@ class Profile(Base):
             print(f"ID: {profile.id} - Nome: {profile.name}")
             print("")
 
-    def createProfile(id):
-        name = input("Digite o nome do perfil: ")
-        email = input("Digite o email do perfil: ")
-        phone = input("Digite o telefone do perfil: ")
-        catProf = input("Digite o tipo do perfil: \n 1 - admin \n 2 - user \n 3 - profissional \n")
-        if catProf == '1':
-            catProf = 'admin'
-        if catProf == '2':
-            catProf = 'user'
-        if catProf == '3':
-            catProf = 'profissional'
-    
+    def create_profile_db(id, name,email,phone,catProf):
         try:
             profile = Profile(name=name,email=email,phone=phone,catProf=catProf,user_id=id)
             session.add(profile)
             session.commit()
-            print("Perfil cadastrado com sucesso!")
-            return 
+            return True 
         except:
             print("Erro ao cadastrar perfil!")
             return False

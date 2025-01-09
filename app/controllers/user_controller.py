@@ -29,8 +29,8 @@ def login_usuario():
         id = User.getUserId(name)
         return id
 
-def checkProfile(id):
-    profile = User.checkProfileUser(id)
+def check_profile(id):
+    profile = User.check_profile_User(id)
     return profile
 
 
