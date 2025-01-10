@@ -22,8 +22,11 @@ def list_profile():
     return
 
 def delete_profile(id)  :
+    resp = input("Deseja realmente deletar o perfil? (s/n)")
+    if resp == 'n':
+        return False
+    
     dp = Profile.delete_profile_db(id)
     if dp:
         return True
     return False            
-    return

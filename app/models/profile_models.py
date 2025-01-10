@@ -39,3 +39,12 @@ class Profile(Base):
             print(f"Erro ao cadastrar perfil! Erro {e}")	
             return False
   
+    def delete_profile_db(id):
+        try:
+            profile = session.query(Profile).filter(Profile.id == id).first()
+            session.delete(profile)
+            session.commit()
+            return True
+        except Exception as e:
+            print(f"Erro ao deletar perfil! Erro {e}")
+            return False

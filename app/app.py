@@ -35,7 +35,7 @@ def inicial_program():
                 if sp == "profissional":
                     menu_profissional(id_user)
                 if sp == "user":
-                    menu_user()
+                    menu_user(id_user)
                 
         if op == '2':
                 opt = add_usuario()
