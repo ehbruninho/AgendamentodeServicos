@@ -35,6 +35,7 @@ class Profile(Base):
             session.add(profile)
             session.commit()
             return True 
-        except:
-            print("Erro ao cadastrar perfil!")
+        except Exception as e:
+            print(f"Erro ao cadastrar perfil! Erro {e}")	
             return False
+  

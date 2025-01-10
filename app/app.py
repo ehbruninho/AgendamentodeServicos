@@ -31,7 +31,7 @@ def inicial_program():
                     profile = add_profile(id_user)
                     if profile:
                         print("Perfil cadastrado com sucesso!")
-                    return
+                    continue
                 if sp == "profissional":
                     menu_profissional(id_user)
                 if sp == "user":

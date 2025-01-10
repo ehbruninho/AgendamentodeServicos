@@ -21,10 +21,9 @@ def list_profile():
     profile.listProfile()
     return
 
-def search_profile(x):
-    sp = profile.searchProfile(x)
-    if sp == None:
-        print("\n Sem perfil cadastrado, por favor efetue o cadastro! \n")
-        mp = profile.createProfile(x)
-    return sp
-    
+def delete_profile(id)  :
+    dp = Profile.delete_profile_db(id)
+    if dp:
+        return True
+    return False            
+    return
