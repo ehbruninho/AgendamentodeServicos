@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Enum
 from .base_models import Base,create_session
 
 
+
 session = create_session()
 
 class Profile(Base):
@@ -21,13 +22,11 @@ class Profile(Base):
         self.catProf = catProf
         self.user_id = user_id
 
-    def listProfile():
-        profiles = session.query(Profile).all()
-        print("Perfis cadastrados:")
-        print("")
-        for profile in profiles:
-            print(f"ID: {profile.id} - Nome: {profile.name}")
-            print("")
+    def listProfile(id_user):
+        from .users_models import User
+        profiles = session.query(Profile).join(User).filter(Profile.user_id == User.id).filter(User.id == id_user).all()
+        return profiles
+        
 
     def create_profile_db(id, name,email,phone,catProf):
         try:

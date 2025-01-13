@@ -17,8 +17,11 @@ def add_profile(x):
         Profile.create_profile_db(x,name,email,phone,catProf)
         return True
 
-def list_profile():
-    profile.listProfile()
+def list_profile(id_user):
+    list_profiles = Profile.listProfile(id_user)
+    for profile in list_profiles:
+            print(f"Nome: {profile.name} - Catergoria: {profile.catProf}")
+            print("")
     return
 
 def delete_profile(id)  :

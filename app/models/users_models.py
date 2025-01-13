@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from .base_models import Base,create_session
 from .profile_models import Profile
+import os
 
 session = create_session()
 
@@ -17,19 +18,29 @@ class User(Base):
 
     def createUser(name,password):
         try:
+            user = User.checkUser(name)
+
+            if user == True: 
+                print("Usuário já cadastrado! Tente novamente.")
+                return
+            
             usuario = User(username=name,password=password)
             session.add(usuario)
             session.commit()
-
+            print("Usuário cadastrado com sucesso!")
+                
         except Exception as e:
                 print(f"Erro ao cadastrar usuário: {e}!")
                 return 
+       
         
     def checkUser(name):
         user = session.query(User).filter(User.username == name).first()
-        if user:
+        if user: # Bruno - 07/01 - Demorei para encontrar o erro, pois estava comparando a variavel com o campo da tabela quando na verdade deveria comparar somente se a query era True ou False
             return True
+       
         return False
+    
            
     def listUser():
         # Bruno - 07/01 - Comando select * from users
