@@ -22,7 +22,7 @@ class Profile(Base):
         self.catProf = catProf
         self.user_id = user_id
 
-    def listProfile(id_user):
+    def list_profile(id_user):
         from .users_models import User
         profiles = session.query(Profile).join(User).filter(Profile.user_id == User.id).filter(User.id == id_user).all()
         return profiles

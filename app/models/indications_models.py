@@ -12,6 +12,7 @@ class Indication(Base):
     description = Column(String(100), nullable=False)
     service_id = Column(Integer, ForeignKey('services.id'))
     user_orig = Column(Integer, ForeignKey('users.id'))
+    user_dest = Column(Integer, ForeignKey('users.id'))
     cat_id = Column(Integer, ForeignKey('categories.id'))
     date = Column(Date, nullable=False)
     
@@ -23,15 +24,15 @@ class Indication(Base):
         self.cat_id = cat_id
         self.date = date
 
-    def createIndication(description,service_id,user_orig, user_dest,cat_id, date):
+    def add_indication(description,service_id,user_orig, user_dest,cat_id, date):
         try:
             indication = Indication(description=description,service_id=service_id,user_orig=user_orig,user_dest=user_dest,cat_id=cat_id,date=date)
             session.add(indication)
             session.commit()
             print("Indicação cadastrada com sucesso!")
             return indication
-        except:
-            print("Erro ao cadastrar indicação!")
+        except Exception as e:
+            print(f"Erro ao cadastrar indicação! Erro: {e}")
             return False
         
    

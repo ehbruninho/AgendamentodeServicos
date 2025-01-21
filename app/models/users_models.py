@@ -16,9 +16,9 @@ class User(Base):
         self.username = username
         self.password = password
 
-    def createUser(name,password):
+    def create_user(name,password):
         try:
-            user = User.checkUser(name)
+            user = User.check_user(name)
 
             if user == True: 
                 print("Usuário já cadastrado! Tente novamente.")
@@ -34,7 +34,7 @@ class User(Base):
                 return 
        
         
-    def checkUser(name):
+    def check_user(name):
         user = session.query(User).filter(User.username == name).first()
         if user: # Bruno - 07/01 - Demorei para encontrar o erro, pois estava comparando a variavel com o campo da tabela quando na verdade deveria comparar somente se a query era True ou False
             return True
@@ -42,11 +42,11 @@ class User(Base):
         return False
     
            
-    def listUser():
+    def list_user():
         # Bruno - 07/01 - Comando select * from users
         return session.query(User).all()
 
-    def loginUser(name,password):
+    def login_user(name,password):
         try:
             user = session.query(User).filter(User.username == name).filter(User.password == password).all()
             if user:
@@ -56,7 +56,7 @@ class User(Base):
             print(f"Erro ao logar usuário! {e}")
             return 
         
-    def getUserId(name):
+    def get_user_id(name):
         user = session.query(User).filter(User.username == name).filter(User.id).first()
         return user.id
     
@@ -67,7 +67,7 @@ class User(Base):
             return user.catProf
         return False
     
-    def deleteUser(id):
+    def delete_user(id):
         try:
             user = session.query(User).filter(User.id == id).first()
             session.delete(user)

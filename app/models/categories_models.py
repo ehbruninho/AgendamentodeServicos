@@ -13,7 +13,7 @@ class Category(Base):
     def __init__(self,name):
         self.name = name
 
-    def createCategory(name):
+    def create_category(name):
         try:
             category = Category(name=name)
             session.add(category)
@@ -23,3 +23,6 @@ class Category(Base):
         except:
             print("Erro ao cadastrar categoria!")
             return False
+        
+    def list_categories():
+        return session.query(Category).all()

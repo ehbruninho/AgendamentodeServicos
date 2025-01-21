@@ -21,7 +21,7 @@ class Service(Base):
         self.user_id = user_id
         self.cat_id = cat_id
 
-    def createService(id):
+    def create_service(id):
         name = input("Digite o nome do serviço: ")
         description = input("Digite a descrição do serviço: ")
         price = input("Digite o preço do serviço: R$")
@@ -36,7 +36,7 @@ class Service(Base):
             return False
         
 
-    def listService(id):
+    def list_service(id):
         services = session.query(Service).filter(Service.user_id == id).all()
         print("Serviços cadastrados:")
         for service in services:

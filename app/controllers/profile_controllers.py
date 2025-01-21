@@ -6,7 +6,7 @@ def add_profile(x):
         name = input("Digite o nome do perfil: ")
         email = input("Digite o email do perfil: ")
         phone = input("Digite o telefone do perfil: ")
-        catProf = input("Digite o tipo do perfil: \n 1 - admin \n 2 - user \n 3 - profissional \n")
+        catProf = input("Digite o tipo do perfil: \n 1 - Administrador \n 2 - Usuario \n 3 - Prestador de Serviço \n")
         if catProf == '1':
             catProf = 'admin'
         if catProf == '2':
@@ -18,7 +18,7 @@ def add_profile(x):
         return True
 
 def list_profile(id_user):
-    list_profiles = Profile.listProfile(id_user)
+    list_profiles = Profile.list_profile(id_user)
     for profile in list_profiles:
             print(f"Nome: {profile.name} - Catergoria: {profile.catProf}")
             print("")

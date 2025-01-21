@@ -4,15 +4,15 @@ user = User
 def add_usuario():
     name = input("Digite o nome do usuário: ")
     password = input("Digite a senha do usuário: ")
-    user = User.checkUser(name)
+    user = User.check_user(name)
     if user:
         return False
-    User.createUser(name, password)
+    User.create_user(name, password)
     return True
 
 def list_usuario():
     print("Lista de usuários cadastrados:")
-    users = User.listUser()
+    users = User.list_user()
     for user in users:
         print(f"ID: {user.id} Nome: {user.username}")
         print("")
@@ -22,11 +22,11 @@ def list_usuario():
 def login_usuario():
     name = input("Login: ")
     password = input("Senha: ")   
-    user = User.loginUser(name, password)    
+    user = User.login_user(name, password)    
     if not user:
         return False
     else:
-        id = User.getUserId(name)
+        id = User.get_user_id(name)
         return id
 
 def check_profile(id):
