@@ -36,3 +36,26 @@ def add_indication(id_user):
 
     indication = Indication.add_indication(description,service_id,id_user,user_dest,cat_id,date_att)
     return indication
+
+def get_indications(id_user):
+    indications = Indication.notific_indications(id_user)
+    if indications:
+        print("Você possui novas indicações")
+        for indication in indications:
+            print(f"Inidicador: {indication.username}")
+            print("")
+            
+    else:
+        print("Sem indicações")
+        print("")
+
+
+    return indications
+
+def att_visulization(id_user):
+    indications = Indication.search_indication(id_user)
+    for indication in indications:
+        print(f"Indicação: {indication.description}")
+        print(f"Data: {indication.date}")
+        Indication.att_visualized(id_user)
+    return indications

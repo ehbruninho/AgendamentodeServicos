@@ -35,6 +35,7 @@ def inicial_program():
                     continue
                 if sp == "profissional":
                     menu_profissional(id_user)
+                    
                 if sp == "user":
                     menu_user(id_user)
                 

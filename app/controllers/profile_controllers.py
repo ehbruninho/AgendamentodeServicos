@@ -2,7 +2,7 @@ from models.profile_models import Profile
 
 profile = Profile
 
-def add_profile(x):
+def add_profile(id_user):
         name = input("Digite o nome do perfil: ")
         email = input("Digite o email do perfil: ")
         phone = input("Digite o telefone do perfil: ")
@@ -14,7 +14,7 @@ def add_profile(x):
         if catProf == '3':
             catProf = 'profissional'
         
-        Profile.create_profile_db(x,name,email,phone,catProf)
+        Profile.create_profile_db(id_user,name,email,phone,catProf)
         return True
 
 def list_profile(id_user):
