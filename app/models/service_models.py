@@ -21,12 +21,9 @@ class Service(Base):
         self.user_id = user_id
         self.cat_id = cat_id
 
-    def create_service(id):
-        name = input("Digite o nome do serviço: ")
-        description = input("Digite a descrição do serviço: ")
-        price = input("Digite o preço do serviço: R$")
+    def create_service(id, name, description, price, cat_id):
         try:
-            service = Service(name=name,description=description,price=price,user_id=id,cat_id=1)
+            service = Service(name=name,description=description,price=price,user_id=id,cat_id=cat_id)
             session.add(service)
             session.commit()
             print("Serviço cadastrado com sucesso!")
@@ -37,10 +34,15 @@ class Service(Base):
         
 
     def list_service(id):
-        services = session.query(Service).filter(Service.user_id == id).all()
-        print("Serviços cadastrados:")
-        for service in services:
-            print(f"Nome: {service.name}")
-            print(f"Descrição: {service.description}")
-            print(f"Preço: R${service.price}")
-            print("")
+        return session.query(Service).all()
+       
+    def list_service_per_category(id_category):
+        return session.query(Service).filter(Service.cat_id == id_category).all()
+    
+    def list_service_per_user(id):
+        return session.query(Service).filter(Service.user_id == id)
+    
+    def list_service_per_id(id):
+        from .users_models import User
+        return session.query(User.username, User.id).join(Service, User.id == Service.user_id).filter(Service.id == id).all()
+    

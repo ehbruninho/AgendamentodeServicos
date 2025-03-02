@@ -21,19 +21,14 @@ def add_indication(id_user):
         print("")
 
     user_dest = int(input("ID Prestador de Serviço: "))
-
     categories = Category.list_categories()
     
     for category in categories:
         print(f"ID: {category.id} Categoria: {category.name}")
         print("")
 
-
     cat_id = int(input("Id da categoria: "))
-
     date_att = datetime.now().date()
-
-
     indication = Indication.add_indication(description,service_id,id_user,user_dest,cat_id,date_att)
     return indication
 
@@ -57,5 +52,6 @@ def att_visulization(id_user):
     for indication in indications:
         print(f"Indicação: {indication.description}")
         print(f"Data: {indication.date}")
+        print("")
         Indication.att_visualized(id_user)
     return indications

@@ -61,10 +61,10 @@ class User(Base):
         return user.id
     
     def check_profile_User(id):
-        # Bruno - 07/01 - Tive que fazer um join para pegar o catProf
+        # Bruno - 07/01 - Tive que fazer um join para pegar o catUser
         user = (session.query(Profile).join(User, Profile.user_id == User.id).filter(User.id == id).first())
         if user:
-            return user.catProf
+            return user.catUser
         return False
     
     def delete_user(id):

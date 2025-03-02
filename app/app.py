@@ -34,9 +34,11 @@ def inicial_program():
                         print("")
                     continue
                 if sp == "profissional":
+                    os.system('clear')
                     menu_profissional(id_user)
                     
                 if sp == "user":
+                    os.system('clear')
                     menu_user(id_user)
                 
         if op == '2':

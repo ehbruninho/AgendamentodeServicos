@@ -24,5 +24,5 @@ class Category(Base):
             print("Erro ao cadastrar categoria!")
             return False
         
-    def list_categories():
+    def list_categories(): 
         return session.query(Category).all()

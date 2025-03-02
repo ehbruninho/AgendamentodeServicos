@@ -1,1 +1,1 @@
-from models import Base, get_engine, create_session, User, Profile, Service, Indication
+from models import Base, get_engine, create_session, User, Profile, Service, Indication, Category, RequestService
