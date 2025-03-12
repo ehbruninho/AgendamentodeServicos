@@ -11,3 +11,8 @@ def list_category():
 
     return 
 
+def add_category():
+    category = 'Informatica', 'Eletrica', 'Hidraulica', 'Marcenaria', 'Pintura', 'Jardinagem', 'Limpeza', 'Outros'
+    for cat in category:
+        Category.create_category(cat)
+    return

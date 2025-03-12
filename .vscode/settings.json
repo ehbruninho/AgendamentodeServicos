@@ -2,5 +2,8 @@
     "files.associations": {
         "stdlib.h": "c",
         "stdio.h": "c"
-    }
+    },
+    "python.analysis.extraPaths": [
+        "./app"
+    ]
 }

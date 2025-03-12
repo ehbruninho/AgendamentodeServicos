@@ -1,6 +1,7 @@
 from models.service_models import Service
 from models.categories_models import Category
 from models.requestService_models import RequestService
+import os
 
 service = Service
 
@@ -59,6 +60,7 @@ def add_request_service(user_id):
     print("Selecione a categoria de serviço:")
     
     categories = Category.list_categories()
+    
     for category in categories:
         print(f"ID: {category.id} Categoria: {category.name}")
         print("")
@@ -89,13 +91,49 @@ def add_request_service(user_id):
 def list_request_service_users(user_id):
     request_service = RequestService.list_request_service_per_user(user_id)
     if request_service == []:
-        print("Nenhuma solicitação de serviço para esse usuário.")
+        print("Nenhuma solicitação de serviço em aberto para esse usuário.")
         return False
     else:
         for request in request_service:
+            print(f"ID:  {request.id}")
             print(f"Solicitante: {request.username}")
             print(f"Data: {request.date}")
             print(f"Serviço: {request.name}")
+            print(f"Status: {request.status}")
+            print("")
+    return
+
+def update_request_service_status(user_id):
+    print("")
+    print("Lista de solicitações de serviço:")
+    request = list_request_service_users(user_id)
+    if request:
+        request_id = input("Digite o ID da solicitação de serviço: ")
+        status = input("Digite o status da solicitação de serviço (Aceito/Recusado): ")
+        request_service = RequestService.update_request_service_status(user_id,request_id,status)
+    else:
+        print("")
+        return False
+    
+def list_all_services():
+    services = Service.list_service()
+    for service in services:
+        print(f"ID: {service.id} Nome: {service.name}")
+        print(f"Descrição: {service.description}")
+        print(f"Preço: R${service.price}")
+        print("")
+    return
+
+def list_all_request_service():
+    request_service = RequestService.list_all_request_service()
+    if request_service == []:
+        print("Nenhuma solicitação de serviço cadastrada.")
+        return False
+    else:
+        for request in request_service:
+            print(f"ID: {request.id}")
+            print(f"Data: {request.date}")
+            print(f"Horário: {request.hour}")
             print(f"Status: {request.status}")
             print("")
     return

@@ -1,4 +1,4 @@
-from controllers.service_controllers import create_service, list_service_per_user
+from controllers.service_controllers import create_service, list_service_per_user, update_request_service_status
 
 from controllers.indication_controller import get_indications, att_visulization
 import os
@@ -15,7 +15,8 @@ def menu_profissional(id_user):
         print("2 - Listar serviços")
         print("3 - Visualizar indicações")
         print("4 - Verificar solicitações de serviço")
-        print("5 - Sair")
+        print("5 - Atualizar status de solicitação de serviço")
+        print("6 - Sair")
         print("")
         op = input("Digite a opção desejada: " )
         os.system('clear')
@@ -29,6 +30,9 @@ def menu_profissional(id_user):
         if op == '4':
             from controllers.service_controllers import list_request_service_users
             list_request_service_users(id_user)
+
         if op == '5':
+            update_request_service_status(id_user)
+        if op == '6':
             break
      return

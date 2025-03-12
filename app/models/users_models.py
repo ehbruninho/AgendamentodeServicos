@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from .base_models import Base,create_session
 from .profile_models import Profile
+from werkzeug.security import check_password_hash
 import os
 
 session = create_session()
@@ -48,8 +49,8 @@ class User(Base):
 
     def login_user(name,password):
         try:
-            user = session.query(User).filter(User.username == name).filter(User.password == password).all()
-            if user:
+            user = session.query(User).filter(User.username == name).first()
+            if user and check_password_hash(user.password, password):
                 return True
             return False
         except Exception as e:
@@ -67,6 +68,15 @@ class User(Base):
             return user.catUser
         return False
     
+    def update_username(id, name):
+        try: 
+            user = session.query(User).filter(User.id == id).first()
+            user.username = name
+            session.commit()
+        except Exception as e:
+            print(f"Erro ao atualizar nome do usuário: {e}!")
+            return
+
     def delete_user(id):
         try:
             user = session.query(User).filter(User.id == id).first()

@@ -40,3 +40,10 @@ def delete_profile(id)  :
     if dp:
         return True
     return False            
+
+def list_all_profi():
+    profiles = Profile.list_all_profissional()
+    for profile in profiles:
+        print(f"Nome: {profile.name} - Categoria: {profile.catUser}")
+        print("")
+    return

@@ -39,13 +39,32 @@ class RequestService(Base):
                 print(f"Erro ao cadastrar solicitação de serviço! Erro: {e}")
                 return False
 
+        def list_all_request_service():
+            try:
+                request_service = session.query(RequestService).all()
+                return request_service
+            except Exception as e:
+                print(f"Erro ao listar solicitações de serviço! Erro: {e}")
+                return False
+
         def list_request_service_per_user(user_id):
             from .users_models import User
             from .service_models import Service
             try:
                 request_service = session.query(
-                     User.username, RequestService.date,Service.name, RequestService.status).join(User, User.id == RequestService.user_orig).join(Service, RequestService.service_id == Service.id).filter(RequestService.status=="Em aberto").filter(RequestService.user_dest == user_id).all()
+                     User.username, RequestService.id,RequestService.date,Service.name, RequestService.status).join(User, User.id == RequestService.user_orig).join(Service, RequestService.service_id == Service.id).filter(RequestService.status=="Em aberto").filter(RequestService.user_dest == user_id).all()
                 return request_service
             except Exception as e:
                 print(f"Erro ao listar solicitações de serviço! Erro: {e}")
+                return False
+        
+        def update_request_service_status(user_id,request_id,status):
+            try:
+                request_service = session.query(RequestService).filter(RequestService.id == request_id).filter(RequestService.user_dest == user_id).first()
+                request_service.status = status
+                session.commit()
+                print("Status da solicitação de serviço atualizado com sucesso!")
+                return request_service
+            except Exception as e:
+                print(f"Erro ao atualizar status da solicitação de serviço! Erro: {e}")
                 return False

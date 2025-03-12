@@ -5,6 +5,7 @@ from controllers.profile_controllers import add_profile
 from controllers.user_controller import login_usuario, add_usuario, list_usuario, check_profile
 from menus.menu_professional import menu_profissional
 from menus.menu_users import menu_user
+from menus.menu_admin import menu_admin
 import os
 
 def inicial_program():
@@ -40,6 +41,10 @@ def inicial_program():
                 if sp == "user":
                     os.system('clear')
                     menu_user(id_user)
+
+                if sp =="admin":
+                    os.system('clear')
+                    menu_admin(id_user)
                 
         if op == '2':
                 opt = add_usuario()

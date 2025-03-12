@@ -33,7 +33,7 @@ class Service(Base):
             return False
         
 
-    def list_service(id):
+    def list_service():
         return session.query(Service).all()
        
     def list_service_per_category(id_category):

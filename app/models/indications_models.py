@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 
 session = create_session()
 
+
 class Indication(Base):
     
     __tablename__ = 'indications'

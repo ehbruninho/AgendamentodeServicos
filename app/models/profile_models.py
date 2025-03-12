@@ -30,7 +30,9 @@ class Profile(Base):
         profiles = session.query(Profile).join(User).filter(Profile.user_id == User.id).filter(User.id == id_user).all()
         return profiles
         
-
+    def list_all_profissional():
+        return  session.query(Profile).filter(Profile.catUser == 'profissional').all()
+     
     def create_profile_db(id, name,email,phone,catUser,cat_id):
         try:
             profile = Profile(user_id=id,name=name,email=email,phone=phone,catUser=catUser, cat_id=cat_id)
